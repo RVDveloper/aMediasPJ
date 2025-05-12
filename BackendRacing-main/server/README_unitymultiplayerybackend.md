@@ -11,7 +11,7 @@ using System.Collections;
 
 public class AuthManager : MonoBehaviour
 {
-    public string backendUrl = "https://TU_BACKEND_URL/auth/login";
+    public string backendUrl = "https://racing-f1-backend.fly.dev/api/auth/login";
     public string email;
     public string password;
 
@@ -57,6 +57,7 @@ public class User
 ```
 
 **¿Cómo usarlo?**
+
 - Llama a `StartCoroutine(authManager.Login(...))` desde tu UI de login.
 - Guarda el token y userId en PlayerPrefs para usarlos en futuras peticiones.
 
@@ -146,6 +147,7 @@ public class PlayerInfoDisplay : MonoBehaviourPunCallbacks
     }
 }
 ```
+
 - Asigna los sprites de los coches en el inspector de Unity con las imágenes que has subido.
 
 ---
@@ -155,7 +157,7 @@ public class PlayerInfoDisplay : MonoBehaviourPunCallbacks
 ```csharp
 public IEnumerator EnviarApuesta(int userId, int rivalId, float cantidad, System.Action onSuccess, System.Action<string> onError)
 {
-    string url = "https://TU_BACKEND_URL/apuesta/crear";
+    string url = "https://racing-f1-backend.fly.dev/bet/create";
     WWWForm form = new WWWForm();
     form.AddField("userId", userId);
     form.AddField("rivalId", rivalId);
@@ -171,6 +173,7 @@ public IEnumerator EnviarApuesta(int userId, int rivalId, float cantidad, System
         onError?.Invoke(www.error);
 }
 ```
+
 - Crea el endpoint en el backend para recibir y procesar la apuesta antes de la carrera.
 
 ---
@@ -180,7 +183,7 @@ public IEnumerator EnviarApuesta(int userId, int rivalId, float cantidad, System
 ```csharp
 public IEnumerator EnviarResultado(int userId, int rivalId, float tiempo, bool gano, System.Action onSuccess, System.Action<string> onError)
 {
-    string url = "https://TU_BACKEND_URL/race/result";
+    string url = "https://racing-f1-backend.fly.dev/race/result";
     WWWForm form = new WWWForm();
     form.AddField("userId", userId);
     form.AddField("rivalId", rivalId);
@@ -197,6 +200,7 @@ public IEnumerator EnviarResultado(int userId, int rivalId, float tiempo, bool g
         onError?.Invoke(www.error);
 }
 ```
+
 - Crea el endpoint en el backend para recibir el resultado, transferir los tokens y actualizar el ranking.
 
 ---
@@ -226,4 +230,4 @@ public IEnumerator EnviarResultado(int userId, int rivalId, float tiempo, bool g
 
 ---
 
-**¿Necesitas ejemplos personalizados según tu flujo de juego? ¡Pídelo y te lo preparo!** 
+**¿Necesitas ejemplos personalizados según tu flujo de juego? ¡Pídelo y te lo preparo!**
