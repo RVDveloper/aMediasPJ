@@ -31,6 +31,43 @@
 - `POST /nft/transfer` — Transferir un "NFT" a otro usuario.
   - **Body:** `{ fromUserId, toUserId, nftId }`
 
+#### Historial de transacciones y apuestas
+- `GET /transactions/history/:userId` — Devuelve el historial de transacciones de un usuario, incluyendo:
+  - Compras y ventas de autos (NFTs simulados)
+  - Transferencias de tokens SPL
+  - Apuestas ganadas/perdidas
+
+  **Ejemplo de respuesta:**
+  ```json
+  {
+    "history": [
+      {
+        "type": "token_exchange",
+        "id": 12,
+        "from_addr": "...",
+        "to_addr": "...",
+        "amount": "100.00",
+        "signature": "...",
+        "created_at": "2024-05-11T10:00:00.000Z",
+        "from_username": "juan",
+        "to_username": "ana"
+      },
+      {
+        "type": "token_exchange",
+        "id": 13,
+        "from_addr": "...",
+        "to_addr": "...",
+        "amount": "50.00",
+        "signature": "...",
+        "created_at": "2024-05-11T11:00:00.000Z",
+        "from_username": "ana",
+        "to_username": "juan"
+      }
+    ]
+  }
+  ```
+  Este endpoint permite a los usuarios ver todas sus apuestas, compras, ventas y transferencias de tokens realizadas en la plataforma.
+
 ### 3. Ejemplo de flujo
 
 1. El usuario crea una wallet (`/wallet/create`).

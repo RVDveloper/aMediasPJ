@@ -5,6 +5,7 @@ const sequelize = require('./src/config/database.js');
 const authRoutes = require('./src/routes/auth.js');
 const billingRoutes = require('./src/routes/billingRoutes.js');
 const dashboardRoutes = require('./src/routes/dashboardRoutes.js');
+const raceRoutes = require('./src/routes/race');
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/billing', billingRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/', raceRoutes);
 
 // Ruta de prueba
 app.get('/', (req, res) => {
